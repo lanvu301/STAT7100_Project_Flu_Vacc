@@ -1,0 +1,54 @@
+# DECISION ANALYSIS FOR TAKING OR NOT TAKING FLU VACCINES
+
+
+
+set.seed(123)
+data_VE <-(0.01)*c(56,	60,	47,	49,	52,	19,	48,	40,	38,	29,	39,	36,	30,	44,	56)
+#let us estimate the average vaccine effectiveness percentage
+averageVE<-mean(data_VE)
+varianceVE<-var(data_VE)
+medianVE<-median(data_VE)
+
+cat("Estimated average VE is", averageVE,"\n")
+
+sim_num <- 10000
+#estimate average cost of vaccine
+data_price<-runif(sim_num,20,100)
+common_price<-round(mean(data_price),2)
+cat("Estimated price of Vaccine is", common_price,"\n")
+# let's do flu probability which is between %5 and %20
+sim_prob<-runif(sim_num,0.05,0.2)
+common_prob<-median(sim_prob)
+cat("Estimated probability of getting flu", common_prob,"\n")
+# Inputs
+admin_cost<-21.93
+p_if_flu <- common_prob  # $21.93 adminsitration fee         
+vac_eff<- averageVE             
+cost_vaccine <- common_price + admin_cost         
+cost_if_flu <- 273 #average treatment cost if get flu            
+v_coverage <- 0.467 # vaccination coverage
+inf_rate<-(1 - (v_coverage * vac_eff)) 
+effective_p_flu <- p_if_flu * inf_rate #infection rate
+# If take the vaccine scenario
+flu_prob_vax <- effective_p_flu * (1 - vac_eff)  # personal protection
+got_flu_vax <- rbinom(sim_num, 1, flu_prob_vax)
+cost_vax <- got_flu_vax * cost_if_flu + cost_vaccine
+mean_cost_vax <- mean(cost_vax)
+
+##  Don't take the vaccine scenario
+flu_prob_novax <- effective_p_flu
+got_flu_novax <- rbinom(sim_num, 1, flu_prob_novax)
+cost_novax <- got_flu_novax * cost_if_flu  # no vaccine cost
+mean_cost_novax <- mean(cost_novax)
+
+
+cat("Expected cost WITH vaccine:    $", round(mean_cost_vax, 2), "\n")
+cat("Expected cost WITHOUT vaccine: $", round(mean_cost_novax, 2), "\n")
+
+# Plot cost distribution for both strategies
+hist(cost_novax, breaks=30, col="red",
+     xlim=c(0, max(c(cost_novax, cost_vax))), xlab="Cost",
+     main="Cost Distribution: With vs Without Vaccine")
+hist(cost_vax, breaks=30, col="lightblue", add=TRUE)
+legend("topright", legend=c("No Vaccine", "Vaccine"),
+       fill=c("red", "lightblue"))
