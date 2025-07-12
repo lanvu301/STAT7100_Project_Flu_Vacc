@@ -32,19 +32,21 @@ inf_prob<-(1 - (v_coverage * vac_eff))
 infection_rate <- p_of_flu * inf_prob #infection rate
 # If take the vaccine scenario
 flu_with_v <- infection_rate * (1 - vac_eff)  # personal protection
-got_flu_vax <- rbinom(sim_num,100, flu_with_v)
+got_flu_vax <- rbinom(sim_num,1, flu_with_v)
 cost_v <- got_flu_vax * cost_if_flu + cost_vaccine
 mean_cost_vax <- mean(cost_v)
 
 ##  Don't take the vaccine scenario
 flu_without_v <- infection_rate
-got_flu_novax <- rbinom(sim_num,100, flu_without_v )
+got_flu_novax <- rbinom(sim_num,1, flu_without_v )
 cost_no_v <- got_flu_novax * cost_if_flu  # no vaccine cost
 mean_cost_novax <- mean(cost_no_v)
 
 
-cat("Expected cost WITH vaccine:    $", round(mean_cost_vax, 2), "\n")
-cat("Expected cost WITHOUT vaccine: $", round(mean_cost_novax, 2), "\n")
+cat("Expected cost of the population WITH vaccine:    $", round(mean_cost_vax, 2), "\n")
+cat("Expected cost of the population WITHOUT vaccine: $", round(mean_cost_novax, 2), "\n")
+if(round(mean_cost_vax, 2)>round(mean_cost_novax, 2)){print("Not Taking Vaccine is best option")}else{print(
+                                                           "Taking Vaccine is best option")}
 par(mfrow=c(2,2))
 # Plot cost distribution for both strategies
 hist(cost_novax, breaks=30, col="red",
