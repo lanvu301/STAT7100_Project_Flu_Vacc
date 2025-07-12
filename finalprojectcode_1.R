@@ -34,17 +34,17 @@ infection_rate <- p_of_flu * inf_prob #infection rate
 flu_with_v <- infection_rate * (1 - vac_eff)  
 got_flu_vax <- rbinom(sim_num,1, flu_with_v) #population of people who have vaccine and did or did not get flu
 cost_v <- got_flu_vax * cost_if_flu + cost_vaccine
-mean_cost_vax <- mean(cost_v)
+total_cost_vax <- sum(cost_v)
 
 ##  Don't take the vaccine scenario
 flu_without_v <- infection_rate
 got_flu_novax <- rbinom(sim_num,1, flu_without_v )#population of people who don't have vaccine and did or did not get flu
 cost_no_v <- got_flu_novax * cost_if_flu  # treatment cost
-mean_cost_novax <- mean(cost_no_v)
+total_cost_novax <- sum(cost_no_v)
 
 
-cat("Expected cost of the population WITH vaccine:    $", round(mean_cost_vax, 2), "\n")
-cat("Expected cost of the population WITHOUT vaccine: $", round(mean_cost_novax, 2), "\n")
+cat("Total cost of the population WITH vaccine:    $", round(total_cost_vax, 2), "\n")
+cat("Total cost of the population WITHOUT vaccine: $", round(total_cost_novax, 2), "\n")
 if(round(mean_cost_vax, 2)>round(mean_cost_novax, 2)){print("Not Taking Vaccine is best option")}else{print(
                                                            "Taking Vaccine is best option")}
 par(mfrow=c(2,2))
