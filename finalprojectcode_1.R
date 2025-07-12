@@ -31,15 +31,15 @@ v_coverage <- 0.467 # vaccination coverage
 inf_prob<-(1 - (v_coverage * vac_eff)) 
 infection_rate <- p_of_flu * inf_prob #infection rate
 # If take the vaccine scenario
-flu_with_v <- infection_rate * (1 - vac_eff)  # personal protection
-got_flu_vax <- rbinom(sim_num,1, flu_with_v)
+flu_with_v <- infection_rate * (1 - vac_eff)  
+got_flu_vax <- rbinom(sim_num,1, flu_with_v) #population of people who have vaccine and did or did not get flu
 cost_v <- got_flu_vax * cost_if_flu + cost_vaccine
 mean_cost_vax <- mean(cost_v)
 
 ##  Don't take the vaccine scenario
 flu_without_v <- infection_rate
-got_flu_novax <- rbinom(sim_num,1, flu_without_v )
-cost_no_v <- got_flu_novax * cost_if_flu  # no vaccine cost
+got_flu_novax <- rbinom(sim_num,1, flu_without_v )#population of people who don't have vaccine and did or did not get flu
+cost_no_v <- got_flu_novax * cost_if_flu  # treatment cost
 mean_cost_novax <- mean(cost_no_v)
 
 
