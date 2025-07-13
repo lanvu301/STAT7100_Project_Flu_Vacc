@@ -12,7 +12,8 @@ cat("Estimated average VE is", round(averageVE,3),"\n")
 
 sim_num <- 10000
 #estimate average cost of vaccine
-data_price<-runif(sim_num,20,100)
+data_VP <-c(19.483,20.878,20.49,
+            20.49,32.448,21.595,19.962,25.44) # prices of vaccine for infants and young adults
 common_price<-round(mean(data_price),2)
 cat("Estimated price of Vaccine is", common_price,"\n")
 # let's do flu probability which is between %5 and %20
@@ -47,3 +48,21 @@ cat("Mean cost of the population WITH vaccine:    $", round(mean_cost_vax, 2), "
 cat("Mean cost of the population WITHOUT vaccine: $", round(mean_cost_novax, 2), "\n")
 if(round(mean_cost_vax, 2)>round(mean_cost_novax, 2)){print("Not Taking Vaccine is best option")}else{print(
   "Taking Vaccine is best option")}
+
+par(mfrow=c(2,2))
+# Plot cost distribution for both strategies
+hist(cost_novax, breaks=30, col="red",
+     xlim=c(0, max(c(cost_novax, cost_vax))), xlab="Vaccine Cost",
+     main="Cost Distribution: With vs Without Vaccine")
+hist(cost_vax, breaks=30, col="lightblue", add=TRUE)
+legend("topright", legend=c("No Vaccine", "Vaccine"),
+       fill=c("red", "lightblue"))
+# Density plot comparison
+plot(density(cost_no_v),
+     col="red", lwd=2,
+     main="Density Plot: Cost With vs Without Vaccine",
+     xlab="Cost", xlim=c(0, max(c(cost_no_v, cost_v))))
+lines(density(cost_v), col="blue", lwd=2)
+legend("topright", legend=c("No Vaccine", "Vaccine"),
+       col=c("red", "blue"), lwd=2)
+grid()
