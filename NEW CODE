@@ -38,8 +38,8 @@ for(p in sim_prob){
   got_flu_novax <- rbinom(sim_num,1, infection_rate_without_v) #population of people who don't have vaccine and did or did not get flu
   cost_no_v <- got_flu_novax * cost_if_flu  # set of treatment cost for each person
  
-  c(popdata_v,cost_v)
-  c(popdata_nov,cost_no_v)}}
+ popdata_v<- c(popdata_v,cost_v)
+  popdata_nov<-c(popdata_nov,cost_no_v)}}
 
 mean_cost_vax <- mean(popdata_v)
 mean_cost_novax<-mean(popdata_nov)
