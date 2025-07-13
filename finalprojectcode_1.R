@@ -60,7 +60,7 @@ legend("topright", legend=c("No Vaccine", "Vaccine"),
 plot(density(cost_no_v),
      col="red", lwd=2,
      main="Density Plot: Cost With vs Without Vaccine",
-     xlab="Cost", xlim=c(0, max(c(cost_no_v, cost_v))),ylim=c(0,0.1)
+     xlab="Cost", xlim=c(0, max(c(cost_no_v, cost_v))))
 lines(density(cost_v), col="blue", lwd=2)
 legend("topright", legend=c("No Vaccine", "Vaccine"),
        col=c("red", "blue"), lwd=2)
