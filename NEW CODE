@@ -39,7 +39,7 @@ for(p in sim_prob){
   cost_no_v <- got_flu_novax * cost_if_flu  # set of treatment cost for each person
  
   c(popdata_v,cost_v)
-  c(popdata_nov,cost_nov)}}
+  c(popdata_nov,cost_no_v)}}
 
 mean_cost_vax <- mean(popdata_v)
 mean_cost_novax<-mean(popdata_nov)
