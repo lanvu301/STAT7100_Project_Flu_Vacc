@@ -29,6 +29,9 @@ cost_vaccine <- common_price + admin_cost
 cost_if_flu <- 273 #average treatment cost if get flu            
 v_coverage <- 1 #if all people are vaccinated
 infection_rate_v <- p_of_flu *(1-vac_eff) #infection rate for vaccinated people
+popdata_v<-c()
+popdata_nov<-c()
+
 # If take the vaccine scenario
 got_flu_vax <- rbinom(sim_num,1, infection_rate_v) #population of people who have vaccine and did or did not get flu
 cost_v <- got_flu_vax * cost_if_flu + cost_vaccine
