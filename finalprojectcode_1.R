@@ -43,7 +43,7 @@ total_cost_novax <- sum(cost_no_v)
 
 cat("Total cost of the population WITH vaccine:    $", round(total_cost_vax, 2), "\n")
 cat("Total cost of the population WITHOUT vaccine: $", round(total_cost_novax, 2), "\n")
-if(round(mean_cost_vax, 2)>round(mean_cost_novax, 2)){print("Not Taking Vaccine is best option")}else{print(
+if(round(total_cost_vax, 2)>round(total_cost_novax, 2)){print("Not Taking Vaccine is best option")}else{print(
                                                            "Taking Vaccine is best option")}
 par(mfrow=c(2,2))
 # Plot cost distribution for both strategies
