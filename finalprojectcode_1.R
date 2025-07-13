@@ -10,7 +10,7 @@ averageVE<-mean(data_VE)
 varianceVE<-var(data_VE)
 medianVE<-median(data_VE)
 
-cat("Estimated average VE is", averageVE,"\n")
+cat("Estimated average VE is", round(averageVE,3),"\n")
 
 sim_num <- 10000
 #estimate average cost of vaccine
@@ -27,18 +27,16 @@ p_of_flu <- common_prob  # $21.93 adminsitration fee
 vac_eff<- averageVE             
 cost_vaccine <- common_price + admin_cost         
 cost_if_flu <- 273 #average treatment cost if get flu            
-v_coverage <- 0.467 # vaccination coverage
-inf_prob<-(1 - (v_coverage * vac_eff)) 
-infection_rate <- p_of_flu * inf_prob #infection rate
+v_coverage <- 1 #if all people are vaccinated
+infection_rate_v <- p_of_flu *(1-vac_eff) #infection rate for vaccinated people
 # If take the vaccine scenario
-flu_with_v <- infection_rate * (1 - vac_eff)  
-got_flu_vax <- rbinom(sim_num,1, flu_with_v) #population of people who have vaccine and did or did not get flu
+got_flu_vax <- rbinom(sim_num,1, infection_rate_v) #population of people who have vaccine and did or did not get flu
 cost_v <- got_flu_vax * cost_if_flu + cost_vaccine
 total_cost_vax <- sum(cost_v)
 
 ##  Don't take the vaccine scenario
-flu_without_v <- infection_rate
-got_flu_novax <- rbinom(sim_num,1, flu_without_v )#population of people who don't have vaccine and did or did not get flu
+infection_rate_without_v <- p_of_flu
+got_flu_novax <- rbinom(sim_num,1, infection_rate_without_v) #population of people who don't have vaccine and did or did not get flu
 cost_no_v <- got_flu_novax * cost_if_flu  # treatment cost
 total_cost_novax <- sum(cost_no_v)
 
