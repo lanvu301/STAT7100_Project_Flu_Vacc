@@ -22,9 +22,11 @@ cat("Estimated probability of getting flu", common_prob,"\n")
 # Inputs
 admin_cost<-21.93           
 cost_vaccine <- common_price + admin_cost         
-cost_if_flu <- 273 #average treatment cost if get flu    
-for(v in data_VE){vac_eff<-v
-
+cost_if_flu <- 273 #average treatment cost if get flu   
+popdata_v<-c()
+popdata_nov<-c()
+for(v in data_VE){
+vac_eff<-v
 for(p in sim_prob){
   infection_rate_v <- p *(1-vac_eff) #infection rate for vaccinated people
   infection_rate_without_v <- p # infection rate of nonvaccinated people
@@ -37,6 +39,7 @@ for(p in sim_prob){
  
   c(popdata_v,cost_v)
   c(popdata_nov,cost_nov)}}
+
 mean_cost_vax <- mean(popdata_v)
 mean_cost_novax<-mean(popdata_nov)
 
