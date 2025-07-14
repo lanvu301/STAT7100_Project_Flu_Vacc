@@ -19,7 +19,7 @@ cat("Range of price of Vaccine is $", round(min(data_VP),2),"to $",round(max(dat
 #we shall use monte carlo simulation to generate these random variables and establish the benefits 
 popcostdata_v<-c()
 popcostdata_nov<-c()
-popvaccostdata_<-c()
+popvaccostdata<-c()
 popbenefitdata<-c()
 popnet_benefitdata<-c()
 sim_num <- 10000
@@ -39,8 +39,8 @@ benefit<-(cost_without_vax - cost_with_vax)
 flu_shot_cost<-sim_vaccost + admin_cost
 net_benefit<-benefit-flu_shot_cost
 popcostdata_v<-c(popcostdata_v,cost_with_vax)
-popcostdata_nov<-c(,cost_without_vax)
-popvaccostdata_<-c(popcostdata_nov,flu_shot_cost)
+popcostdata_nov<-c(popcostdata_nov,cost_without_vax)
+popvaccostdata<-c(popvaccostdata,flu_shot_cost)
 popbenefitdata<-c(popbenefitdata,benefit)
 popnet_benefitdata<-c(popnet_benefitdata,net_benefit)
 }
