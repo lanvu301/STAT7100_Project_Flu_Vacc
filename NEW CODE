@@ -26,7 +26,7 @@ popbenefitdata<-c()
 popnet_benefitdata<-c()
 
 repeat{
-vacc_eff<-sample(data_VP,1,replace=TRUE)
+vacc_eff<-sample(data_VE,1,replace=TRUE)
 flu_infection_rate<-runif(1,0.068,0.108)
 sim_vaccost<-round(runif(1,19.48,32.45),2)
 admin_cost<-round(runif(1,25,40),2)
@@ -47,7 +47,7 @@ popbenefitdata<-append(popbenefitdata,benefit)
 popnet_benefitdata<-append(popnet_benefitdata,net_benefit)
 if(length(popnet_benefitdata)==sim_num){break}
 }
-data.frame(popnet_benefitdata)
+data.frame(Cost if Vaccine=popcostdata_v,Cost if no Vaccine=popcostdata_nov)
 # Plot benefit distribution for both strategies
 hist(popcostdata_nov, breaks=30, col="red",
      xlim=c(0, max(c(cost_novax, cost_vax))), xlab="Vaccine Cost",
