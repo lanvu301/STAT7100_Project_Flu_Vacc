@@ -26,7 +26,7 @@ popbenefitdata<-c()
 popnet_benefitdata<-c()
 
 repeat{
-vacc_eff<-sample(data_VP,1)
+vacc_eff<-sample(data_VP,1,replace=TRUE)
 flu_infection_rate<-runif(1,0.068,0.108)
 sim_vaccost<-round(runif(1,19.48,32.45),2)
 admin_cost<-round(runif(1,25,40),2)
