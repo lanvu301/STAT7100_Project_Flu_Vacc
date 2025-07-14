@@ -15,7 +15,7 @@ cat("Range of price of Vaccine is $", round(min(data_VP),2),"to $",round(max(dat
 #Of the population that have the flu,30% are treated without doctors or hospitals and cost 2 to $100 
 #60% visit the doctors to conduct the optional treatment. Appointments cost $100 to $300
 #10% are hospitalized, and the hospital charges 300 to $550
-# 1% die from flu and they cost $800,000 to 1,500,000
+# 1% die from flu and they cost $800,000 to 1,500,000 (fatality rate)
 #we shall use monte carlo simulation to generate these random variables and establish the benefits 
 
 sim_num <- 1000
