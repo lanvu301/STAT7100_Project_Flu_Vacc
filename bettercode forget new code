@@ -39,10 +39,10 @@ cost_without_vax<-flu_infection_rate*average_treatment_cost
 benefit<-(cost_without_vax - cost_with_vax)
 flu_shot_cost<-sim_vaccost + admin_cost
 net_benefit<-benefit-flu_shot_cost
-popcostdata_v<-c(popcostdata_v,cost_with_vax)
-popcostdata_nov<-c(popcostdata_nov,cost_without_vax)
-popvaccostdata<-c(popvaccostdata,flu_shot_cost)
-popbenefitdata<-c(popbenefitdata,benefit)
-popnet_benefitdata<-c(popnet_benefitdata,net_benefit)
+popcostdata_v<-append(popcostdata_v,cost_with_vax)
+popcostdata_nov<-append(popcostdata_nov,cost_without_vax)
+popvaccostdata<-append(popvaccostdata,flu_shot_cost)
+popbenefitdata<-append(popbenefitdata,benefit)
+popnet_benefitdata<-append(popnet_benefitdata,net_benefit)
 }
 
