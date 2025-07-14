@@ -10,7 +10,7 @@ cat("Estimated average VE is", round(averageVE,3),"\n")
 data_VP <-c(19.483,20.878,20.49,
             20.49,32.448,21.595,19.962,25.44) # prices of vaccine for infants and young adults
 cat("Range of price of Vaccine is $", round(min(data_VP),2),"to $",round(max(data_VP),2),"\n")
-# let's do flu probability which is between %5 and %20
+# let's do flu probability which is between %6.8 and %10.8
 #administration for flu vaccine costs 25 to $40
 #Of the population that have the flu,30% are treated without doctors or hospitals and cost 2 to $100 
 #60% visit the doctors to conduct the optional treatment. Appointments cost $100 to $300
@@ -21,15 +21,27 @@ popcostdata_v<-c()
 popcostdata_nov<-c()
 popvaccostdata_<-c()
 popbenefitdata<-c()
+popnet_benefitdata<-c()
 sim_num <- 10000
 for(i in sim_num){
-sim_prob<-runif(1,0.05,0.2)
+vacc_eff<-sample(data_VP,1)
+flu_infection_rate<-runif(1,0.068,0.108)
 sim_vaccost<-round(runif(1,19.48,32.45),2)
 admin_cost<-round(runif(1,25,40),2)
 cost_no_med<-round(runif(1,2,100),2)
 cost_appointment<-round(runif(1,100,300),2)
 cost_hospital<-round(runif(1,300,500),2)
 cost_death<-round(runif(1,800000,1500000),2)
-average_treatment_cost<-0.3*cost_no_med +0.6*cost_appointment+0.1*cost_hospital
+average_treatment_cost<-(0.3)*cost_no_med +(0.6)*cost_appointment+(0.1)*cost_hospital+(0.01)*cost_death
+cost_with_vax<-flu_infection_rate*average_treatment_cost*(1-vacc_eff)
+cost_without_vax<-flu_infection_rate*average_treatment_cost
+benefit<-(cost_without_vax - cost_with_vax)
+flu_shot_cost<-sim_vaccost + admin_cost
+net_benefit<-benefit-flu_shot_cost
+popcostdata_v<-c(popcostdata_v,cost_with_vax)
+popcostdata_nov<-c(,cost_without_vax)
+popvaccostdata_<-c(popcostdata_nov,flu_shot_cost)
+popbenefitdata<-c(popbenefitdata,benefit)
+popnet_benefitdata<-c(popnet_benefitdata,net_benefit)
 }
 
