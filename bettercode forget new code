@@ -17,16 +17,19 @@ cat("Range of price of Vaccine is $", round(min(data_VP),2),"to $",round(max(dat
 #10% are hospitalized, and the hospital charges 300 to $550
 # 1% die from flu and they cost $800,000 to 1,500,000
 #we shall use monte carlo simulation to generate these random variables and establish the benefits 
-
+popcostdata_v<-c()
+popcostdata_nov<-c()
+popvaccostdata_<-c()
+popbenefitdata<-c()
 sim_num <- 10000
-for(i in sim_num)
+for(i in sim_num){
+sim_prob<-runif(1,0.05,0.2)
+sim_vaccost<-round(runif(1,19.48,32.45),2)
+admin_cost<-round(runif(1,25,40),2)
+cost_no_med<-round(runif(1,2,100),2)
+cost_appointment<-round(runif(1,100,300),2)
+cost_hospital<-round(runif(1,300,500),2)
+cost_death<-round(runif(1,800000,1500000),2)
+average_treatment_cost<-0.3*cost_no_med +0.6*cost_appointment+0.1*cost_hospital
+}
 
-sim_prob<-runif(sim_num,0.05,0.2)
-common_prob<-median(sim_prob)
-cat("Estimated probability of getting flu", common_prob,"\n")
-# Inputs
-admin_cost<-21.93           
-cost_vaccine <- common_price + admin_cost         
-cost_if_flu <- 273 #average treatment cost if get flu   
-popdata_v<-c()
-popdata_nov<-c()
