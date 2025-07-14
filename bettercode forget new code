@@ -1,0 +1,32 @@
+# DECISION ANALYSIS FOR TAKING OR NOT TAKING FLU VACCINES
+
+set.seed(123)
+# data set from CDC of vaccine effectiveness over the years
+data_VE <-(0.01)*c(56,	60,	47,	49,	52,	19,	48,	40,	38,	29,	39,	36,	30,	44,	56)
+#let us estimate the average vaccine effectiveness percentage
+averageVE<-mean(data_VE)
+cat("Estimated average VE is", round(averageVE,3),"\n")
+#estimate average cost of vaccine
+data_VP <-c(19.483,20.878,20.49,
+            20.49,32.448,21.595,19.962,25.44) # prices of vaccine for infants and young adults
+cat("Range of price of Vaccine is $", round(min(data_VP),2),"to $",round(max(data_VP),2),"\n")
+# let's do flu probability which is between %5 and %20
+#administration for flu vaccine costs 25 to $40
+#Of the population that have the flu,30% are treated without doctors or hospitals and cost 2 to $100 
+#60% visit the doctors to conduct the optional treatment. Appointments cost $100 to $300
+#10% are hospitalized, and the hospital charges 300 to $550
+# 1% die from flu and they cost $800,000 to 1,500,000
+#we shall use monte carlo simulation to generate these random variables and establish the benefits 
+
+sim_num <- 10000
+for(i in sim_num)
+
+sim_prob<-runif(sim_num,0.05,0.2)
+common_prob<-median(sim_prob)
+cat("Estimated probability of getting flu", common_prob,"\n")
+# Inputs
+admin_cost<-21.93           
+cost_vaccine <- common_price + admin_cost         
+cost_if_flu <- 273 #average treatment cost if get flu   
+popdata_v<-c()
+popdata_nov<-c()
