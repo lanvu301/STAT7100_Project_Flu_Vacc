@@ -18,7 +18,7 @@ cat("Range of price of Vaccine is $", round(min(data_VP),2),"to $",round(max(dat
 # 1% die from flu and they cost $800,000 to 1,500,000 (fatality rate)
 #we shall use monte carlo simulation to generate these random variables and establish the benefits 
 
-sim_num <- 1000
+sim_num <- 1000 #number of simulations
 popcostdata_v<-c()
 popcostdata_nov<-c()
 popvaccostdata<-c()
@@ -26,17 +26,17 @@ popbenefitdata<-c()
 popnet_benefitdata<-c()
 
 repeat{
-vacc_eff<-sample(data_VE,1,replace=TRUE)
-flu_infection_rate<-runif(1,0.068,0.108)
-sim_vaccost<-round(runif(1,round(min(data_VP),2),round(min(data_VP),2)),2)
-admin_cost<-round(runif(1,25,40),2)
-cost_no_med<-round(runif(1,2,100),2)
-cost_appointment<-round(runif(1,100,300),2)
-cost_hospital<-round(runif(1,300,500),2)
-cost_death<-round(runif(1,800000,1500000),2)
+vacc_eff<-sample(data_VE,1,replace=TRUE) #random pick from the list of vaccine efficacy
+flu_infection_rate<-runif(1,0.068,0.108) # random pick from range of infection rate
+sim_vaccost<-round(runif(1,round(min(data_VP),2),round(min(data_VP),2)),2)# random pick from range of vaccine price
+admin_cost<-round(runif(1,25,40),2) # administration fee for flu shot
+cost_no_med<-round(runif(1,2,100),2) # random pick from range of no medical treatment cost
+cost_appointment<-round(runif(1,100,300),2)# random pick from range of appointment cost
+cost_hospital<-round(runif(1,300,500),2)# random pick from range of hospitalization cost
+cost_death<-round(runif(1,800000,1500000),2) # price of death
 average_treatment_cost<-(0.3)*cost_no_med +(0.6)*cost_appointment+(0.1)*cost_hospital+(0.01)*cost_death
-cost_with_vax<-flu_infection_rate*average_treatment_cost*(1-vacc_eff)
-cost_without_vax<-flu_infection_rate*average_treatment_cost
+cost_with_vax<-flu_infection_rate*average_treatment_cost*(1-vacc_eff)# average cost of traetment if vaccinated
+cost_without_vax<-flu_infection_rate*average_treatment_cost # average cost of traetment if not vaccinated
 benefit<-(cost_without_vax - cost_with_vax)
 flu_shot_cost<-sim_vaccost + admin_cost
 net_benefit<-benefit-flu_shot_cost
