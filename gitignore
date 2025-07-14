@@ -1,0 +1,54 @@
+# RStudio project files
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+.Rapp.history
+
+# Environment files
+.Renviron
+.env
+
+# Quarto / RMarkdown
+*.html
+*.pdf
+*.docx
+*_files/
+_cache/
+.knit.md
+*.utf8.md
+
+# Output data
+*.csv
+*.xlsx
+*.tsv
+*.rds
+*.sav
+
+# Plot/images
+*.png
+*.jpg
+*.jpeg
+*.svg
+
+# Compiled code or packages
+*.o
+*.so
+*.dll
+*.tar.gz
+
+# Logs and misc
+*.log
+*.aux
+*.out
+*.toc
+
+# System files
+.DS_Store
+Thumbs.db
+
+# VSCode (if using)
+.vscode/
+
+# Git ignored backup files
+*~
