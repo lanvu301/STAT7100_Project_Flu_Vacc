@@ -48,13 +48,16 @@ popnet_benefitdata<-append(popnet_benefitdata,net_benefit)
 if(length(popnet_benefitdata)==sim_num){break}
 }
 data.frame(Cost_if_Vaccine=popcostdata_v,Cost_if_no_Vaccine=popcostdata_nov,Benefit_Cost=popbenefitdata)
-# Plot benefit distribution for both strategies
+
+# Plot cost distribution for both vaccine or non-vaccine
 hist(popcostdata_nov, breaks=30, col="red",
      xlim=c(0, max(c(cost_novax, cost_vax))), xlab="Vaccine Cost",
      main="Cost Distribution: With vs Without Vaccine")
 hist(popcostdata_v, breaks=30, col="lightblue", add=TRUE)
 legend("topright", legend=c("No Vaccine", "Vaccine"),
        fill=c("red", "lightblue"))
+boxplot(popcostdata_nov, main = "No Vaccine", col = "lightblue", ylab = "Costs")
+boxplot(popcostdata_v, main = "With Vaccine", col = "lightgreen", ylab = "Costs")
 # Density plot comparison
 plot(density(popcostdata_nov),
      col="red", lwd=2,
@@ -64,3 +67,4 @@ lines(density(popcostdata_v), col="blue", lwd=2)
 legend("topright", legend=c("No Vaccine", "Vaccine"),
        col=c("red", "blue"), lwd=2)
 grid()
+
