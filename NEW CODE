@@ -47,7 +47,7 @@ popbenefitdata<-append(popbenefitdata,benefit)
 popnet_benefitdata<-append(popnet_benefitdata,net_benefit)
 if(length(popnet_benefitdata)==sim_num){break}
 }
-data.frame()
+data.frame(popnet_benefitdata)
 # Plot benefit distribution for both strategies
 hist(popcostdata_nov, breaks=30, col="red",
      xlim=c(0, max(c(cost_novax, cost_vax))), xlab="Vaccine Cost",
