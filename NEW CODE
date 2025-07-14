@@ -48,7 +48,7 @@ popnet_benefitdata<-append(popnet_benefitdata,net_benefit)
 if(length(popnet_benefitdata)==sim_num){break}
 }
 data.frame(Cost_if_Vaccine=popcostdata_v,Cost_if_no_Vaccine=popcostdata_nov,Benefit_Cost=popbenefitdata)
-
+par(mfrow=c(3,2))
 # Plot cost distribution for both vaccine or non-vaccine
 hist(popcostdata_nov, breaks=30, col="red",
      xlim=c(0, max(c(cost_novax, cost_vax))), xlab="Vaccine Cost",
