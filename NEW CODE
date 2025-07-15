@@ -40,10 +40,10 @@ min_cost_death<-round(mean_cost_death,2);min_inf_r<-round(mean_infectionrate,3);
 max_cost_nonmed<-round(mean_cost_nonmed,2);max_cost_outpatientvisit<-round(mean_cost_outpatientvisit,2);
 max_cost_hospital<-round(mean_cost_hospital,2);
 max_cost_death<-round(mean_cost_death,2);max_inf_r<-round(mean_infectionrate,3);
-cat("For cases not medically attended, cost interval is",,"-",,"\n)
-cat("For outpatient visits, cost interval is",,"-",,"\n)
-cat("For hospitalization, cost interval is",,"-",,"\n)
-cat("For death cases, cost interval is",,"-",,"\n)
+cat("For cases not medically attended, cost interval is $",,"-",,"\n)
+cat("For outpatient visits, cost interval is $",,"-",,"\n)
+cat("For hospitalization, cost interval is $",,"-",,"\n)
+cat("For death cases, cost interval is $",,"-",,"\n)
 cat("infection rate interval is",,"-",,"\n)
 
 #we shall use monte carlo simulation to generate these random variables and establish the benefits 
