@@ -85,5 +85,5 @@ boxplot(popcostdata_v, main = "Population With Vaccine", col = "lightgreen", yla
 hist(popnet_benefitdata, breaks=30, col="red",
      xlim=c(0, max(c(cost_novax, cost_vax))), xlab="Net Benefit Cost",
      main="Net Benefit for taking and not taking Vaccine")
- 
+ plot(density(popnet_benefitdata), col="blue", lwd=2, add=TRUE)
 grid()
