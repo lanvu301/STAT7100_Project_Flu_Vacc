@@ -38,6 +38,7 @@ cat("For cases not medically attended, cost interval is",,"-",,"\n)
 cat("For outpatient visits, cost interval is",,"-",,"\n)
 cat("For hospitalization, cost interval is",,"-",,"\n)
 cat("For death cases, cost interval is",,"-",,"\n)
+cat("infection rate interval is",,"-",,"\n)
 
 #we shall use monte carlo simulation to generate these random variables and establish the benefits 
 
