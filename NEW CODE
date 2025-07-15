@@ -65,7 +65,7 @@ cost_appointment<-round(runif(1,min_cost_outpatientvisit,max_cost_outpatientvisi
 cost_hospital<-round(runif(1,min_cost_hospital,max_cost_hospital),2)# random pick from range of hospitalization cost
 cost_death<-round(runif(1,min_cost_death,max_cost_death),2) # price of death
 average_treatment_cost<-mean_percent_nonmed*cost_no_med +mean_percent_outpatientvisit*cost_appointment+mean_percent_hospital*cost_hospital+mean_percent_death*cost_death
-cost_with_vax<-flu_infection_rate*average_treatment_cost*(1-vacc_eff)# average cost of treattment for a person if vaccinated
+cost_with_vax<-flu_infection_rate*average_treatment_cost*(1-vacc_eff)# average cost of treatment for a person if vaccinated
 cost_without_vax<-flu_infection_rate*average_treatment_cost # average cost of treatment for a person if not vaccinated
 benefit<-(cost_without_vax - cost_with_vax)
 flu_shot_cost<-sim_vaccost + admin_cost
