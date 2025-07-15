@@ -21,25 +21,25 @@ cat("Interval of price of Vaccine is $", round(min(data_VP),2),"to $",round(max(
 #Medical cost per death is $76,336.
 #Mean value of lost life is estimated $6,882,779.)
 mean_infectionrate<-0.066
-mean_prob_highrisk<-0.149
-mean_percent_outpatientvisit<-(0.149)*0.625 + (1-0.149)*0.313
+highrisk<-0.149
+mean_percent_outpatientvisit<-(highrisk)*0.625 + (1-highrisk)*0.313
 mean_perecnt_hospital<- 0.0042
 mean_percent_death<-0.00009
 mean_percent_nonmed<-(1-mean_percent_outpatientvisit-mean_perecnt_hospital-mean_percent_death)
 
 #Based on data, we shall assume the current costs for flu treatments is doubled
 mean_cost_nonmed<-3*2
-mean_cost_outpatientvisit<-((1-0.149)*125+(0.149)*725)*2
-mean_cost_hospital<-((1-0.149)*19012+(0.149)*47722)*2
+mean_cost_outpatientvisit<-((1-highrisk)*125+(highrisk)*725)*2
+mean_cost_hospital<-((1-highrisk)*19012+(highrisk)*47722)*2
 mean_cost_death<-(76336+6882779)*2
 
 #For each cost we shall apply them into intervals by adding and subtracting %20, same applies for infection rate
-min_cost_nonmed<-round(mean_cost_nonmed,2);min_cost_outpatientvisit<-round(mean_cost_outpatientvisit,2);
-min_cost_hospital<-round(mean_cost_hospital,2);
-min_cost_death<-round(mean_cost_death,2);min_inf_r<-round(mean_infectionrate,3);
-max_cost_nonmed<-round(mean_cost_nonmed,2);max_cost_outpatientvisit<-round(mean_cost_outpatientvisit,2);
-max_cost_hospital<-round(mean_cost_hospital,2);
-max_cost_death<-round(mean_cost_death,2);max_inf_r<-round(mean_infectionrate,3);
+min_cost_nonmed<-round(0.8*mean_cost_nonmed,2);min_cost_outpatientvisit<-round(0.8*mean_cost_outpatientvisit,2);
+min_cost_hospital<-round(0.8*mean_cost_hospital,2);
+min_cost_death<-round(0.8*mean_cost_death,2);min_inf_r<-round(0.8*mean_infectionrate,3);
+max_cost_nonmed<-round(1.2*mean_cost_nonmed,2);max_cost_outpatientvisit<-round(1.2*mean_cost_outpatientvisit,2);
+max_cost_hospital<-round(1.2*mean_cost_hospital,2);
+max_cost_death<-round(1.2*mean_cost_death,2);max_inf_r<-round(1.2*mean_infectionrate,3);
 cat("For cases not medically attended, cost interval is $",,"-",,"\n)
 cat("For outpatient visits, cost interval is $",,"-",,"\n)
 cat("For hospitalization, cost interval is $",,"-",,"\n)
