@@ -32,6 +32,11 @@ mean_cost_nonmed<-3*2
 mean_cost_outpatientvisit<-(1-0.149)*125+(0.149)*725
 mean_cost_hospital<-(1-0.149)*19012+(0.149)*47722
 mean_cost_death<-76336+6882779
+#For each cost we shall apply them into intervals by adding and subtracting %20
+cat("For cases not medically attended, cost interval is",,"-",,"\n)
+cat("For outpatient visits, cost interval is",,"-",,"\n)
+cat("For hospitalization, cost interval is",,"-",,"\n)
+cat("For death cases, cost interval is",,"-",,"\n)
 
 #we shall use monte carlo simulation to generate these random variables and establish the benefits 
 
