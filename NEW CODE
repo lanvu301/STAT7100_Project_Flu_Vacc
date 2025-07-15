@@ -25,7 +25,7 @@ highrisk<-0.149
 mean_percent_outpatientvisit<-(highrisk)*0.625 + (1-highrisk)*0.313
 mean_percent_hospital<- 0.0042
 mean_percent_death<-0.00009
-mean_percent_nonmed<-(1-mean_percent_outpatientvisit-mean_perecnt_hospital-mean_percent_death)
+mean_percent_nonmed<-(1-mean_percent_outpatientvisit-mean_percent_hospital-mean_percent_death)
 
 #Based on data, we shall assume the current costs for flu treatments is doubled
 mean_cost_nonmed<-3*2
