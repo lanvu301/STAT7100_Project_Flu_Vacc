@@ -9,13 +9,24 @@ cat("Estimated average VE is", round(averageVE,3),"\n")
 #estimate average cost of vaccine
 data_VP <-c(19.483,20.878,20.49,
             20.49,32.448,21.595,19.962,25.44) # prices of vaccine for infants and young adults
-cat("Range of price of Vaccine is $", round(min(data_VP),2),"to $",round(max(data_VP),2),"\n")
-# let's do flu probability which is between %6.8 and %10.8
-#administration for flu vaccine costs 25 to $40
-#Of the population that have the flu,30% are treated without doctors or hospitals and cost 2 to $100 
-#60% visit the doctors to conduct the optional treatment. Appointments cost $100 to $300
-#10% are hospitalized, and the hospital charges 300 to $550
-# 1% die from flu and they cost $800,000 to 1,500,000 (fatality rate)
+cat("Interval of price of Vaccine is $", round(min(data_VP),2),"to $",round(max(data_VP),2),"\n")
+##(The mean infection rate is 0.066 while the proportion for high risk of serious complication is 0.149.
+#The mean probability of outpatient visits for flu infection is 0.313 for non-high risk while 0.625 for high risk.
+#The mean probability of hospitalization for flu infection is 0.0042.
+#The mean probability of death by flu infection is 0.00009.
+#For costs of flu treatments:
+#The mean cost is $3 for cases not medically attended.
+#For outpatient visits, the mean cost is $125 for non-high risk and $725 for high risk.
+#For hospitalization, the mean cost is $19,012 for non-high risk and $47,722 for high risk.
+#Medical cost per death is $76,336.
+#Mean value of lost life is estimated $6,882,779.)
+mean_infectionrate<-0.066
+mean_prob_highrisk<-0.149
+mean_percent_outpatientvisit<-(0.149)*0.625 + (1-0.149)*0.313
+mean_perecnt_hospital<- 0.0042
+mean_percent_death<-0.00009
+mean_percent_nonmed<-
+
 #we shall use monte carlo simulation to generate these random variables and establish the benefits 
 
 sim_num <- 1000 #number of simulations
@@ -69,4 +80,3 @@ lines(density(popcostdata_v), col="blue", lwd=2)
 legend("topright", legend=c("No Vaccine", "Vaccine"),
        col=c("red", "blue"), lwd=2)
 grid()
-
