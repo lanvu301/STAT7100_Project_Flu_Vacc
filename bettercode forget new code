@@ -93,7 +93,9 @@ positive_netbenefit<-c() #the set of postive net benefits in the population
 negative_netbenefit<-c() #the set of negative net benefits in the population
 for(i in 1:sim_num){
 ifelse(popnet_benefitdata[i]>=0,positive_netbenefit<-append(positive_netbenefit,popnet_benefitdata[i]),
-positive_netbenefit<-positive_netbenefit)
+negative_netbenefit<-append(negative_netbenefit,popnet_benefitdata[i])
 }
 prob_positive_netbenefit<- length(positive_netbenefit)/sim_num
-cat("The probability of positive net benefit is",,"\n")
+prob_negative_netbenefit<- length(negative_netbenefit)/sim_num
+cat("The probability of positive net benefit is",prob_positive_netbenefit,"\nThe probability of negative net benefit is",
+prob_negative_netbenefit,"\n")
