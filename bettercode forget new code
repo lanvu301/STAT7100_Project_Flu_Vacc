@@ -89,3 +89,4 @@ hist(popnet_benefitdata,probability=TRUE, breaks=30, col="red",
  lines(density(popnet_benefitdata), col="blue", lwd=2)
 abline(v=0,col="black",lwd=2)
 grid()
+positive_netbenefit<-c()
