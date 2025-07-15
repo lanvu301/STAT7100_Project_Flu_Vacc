@@ -90,6 +90,7 @@ hist(popnet_benefitdata,probability=TRUE, breaks=30, col="red",
 abline(v=0,col="black",lwd=2)
 grid()
 positive_netbenefit<-c() #the set of postive net benefits in the population
+negative_netbenefit<-c() #the set of negative net benefits in the population
 for(i in 1:sim_num){
 ifelse(popnet_benefitdata[i]>=0,positive_netbenefit<-append(positive_netbenefit,popnet_benefitdata[i]),
 positive_netbenefit<-positive_netbenefit)
