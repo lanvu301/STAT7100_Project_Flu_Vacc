@@ -65,9 +65,9 @@ cost_no_med<-round(runif(1,min_cost_nonmed,max_cost_nonmed),2) # random pick fro
 cost_appointment<-round(runif(1,min_cost_outpatientvisit,max_cost_outpatientvisit),2)# random pick from range of appointment cost
 cost_hospital<-round(runif(1,min_cost_hospital,max_cost_hospital),2)# random pick from range of hospitalization cost
 cost_death<-round(runif(1,min_cost_death,max_cost_death),2) # price of death
-average_treatment_cost<-mean_percent_nonmed*cost_no_med +mean_percent_outpatientvisit*cost_appointment+mean_percent_hospital*cost_hospital+mean_percent_death*cost_death
-cost_with_vax<-flu_infection_rate*average_treatment_cost*(1-vacc_eff)# average cost of treatment for a person if vaccinated
-cost_without_vax<-flu_infection_rate*average_treatment_cost # average cost of treatment for a person if not vaccinated
+average_treatment_cost<-round(mean_percent_nonmed*cost_no_med +mean_percent_outpatientvisit*cost_appointment+mean_percent_hospital*cost_hospital+mean_percent_death*cost_death,2)
+cost_with_vax<-round(flu_infection_rate*average_treatment_cost*(1-vacc_eff),2)# average cost of treatment for a person if vaccinated
+cost_without_vax<-round(flu_infection_rate*average_treatment_cost,2) # average cost of treatment for a person if not vaccinated
 benefit<-(cost_without_vax - cost_with_vax)
 flu_shot_cost<-sim_vaccost + admin_cost
 net_benefit<-benefit-flu_shot_cost
@@ -89,3 +89,13 @@ hist(popnet_benefitdata,probability=TRUE, breaks=30, col="red",
  lines(density(popnet_benefitdata), col="blue", lwd=2)
 abline(v=0,col="black",lwd=2)
 grid()
+positive_netbenefit<-c() #the set of postive net benefits in the population
+negative_netbenefit<-c() #the set of negative net benefits in the population
+for(i in 1:sim_num){
+ifelse(popnet_benefitdata[i]>=0,positive_netbenefit<-append(positive_netbenefit,popnet_benefitdata[i]),
+negative_netbenefit<-append(negative_netbenefit,popnet_benefitdata[i])
+}
+prob_positive_netbenefit<- length(positive_netbenefit)/sim_num
+prob_negative_netbenefit<- length(negative_netbenefit)/sim_num
+cat("The probability of positive net benefit is",prob_positive_netbenefit,"\nThe probability of negative net benefit is",
+prob_negative_netbenefit,"\n")
