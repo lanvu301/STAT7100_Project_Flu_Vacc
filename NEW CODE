@@ -34,6 +34,12 @@ mean_cost_hospital<-(1-0.149)*19012+(0.149)*47722
 mean_cost_death<-76336+6882779
 
 #For each cost we shall apply them into intervals by adding and subtracting %20, same applies for infection rate
+min_cost_nonmed<-round(mean_cost_nonmed,2);min_cost_outpatientvisit<-round(mean_cost_outpatientvisit,2);
+min_cost_hospital<-round(mean_cost_hospital,2);
+min_cost_death<-round(mean_cost_death,2);min_inf_r<-round(mean_infectionrate,3);
+max_cost_nonmed<-round(mean_cost_nonmed,2);max_cost_outpatientvisit<-round(mean_cost_outpatientvisit,2);
+max_cost_hospital<-round(mean_cost_hospital,2);
+max_cost_death<-round(mean_cost_death,2);max_inf_r<-round(mean_infectionrate,3);
 cat("For cases not medically attended, cost interval is",,"-",,"\n)
 cat("For outpatient visits, cost interval is",,"-",,"\n)
 cat("For hospitalization, cost interval is",,"-",,"\n)
