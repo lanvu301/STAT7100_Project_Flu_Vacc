@@ -23,7 +23,7 @@ cat("Interval of price of Vaccine is $", round(min(data_VP),2),"to $",round(max(
 mean_infectionrate<-0.066
 highrisk<-0.149
 mean_percent_outpatientvisit<-(highrisk)*0.625 + (1-highrisk)*0.313
-mean_perecnt_hospital<- 0.0042
+mean_percent_hospital<- 0.0042
 mean_percent_death<-0.00009
 mean_percent_nonmed<-(1-mean_percent_outpatientvisit-mean_perecnt_hospital-mean_percent_death)
 
@@ -40,15 +40,15 @@ min_cost_death<-round(0.8*mean_cost_death,2);min_inf_r<-round(0.8*mean_infection
 max_cost_nonmed<-round(1.2*mean_cost_nonmed,2);max_cost_outpatientvisit<-round(1.2*mean_cost_outpatientvisit,2);
 max_cost_hospital<-round(1.2*mean_cost_hospital,2);
 max_cost_death<-round(1.2*mean_cost_death,2);max_inf_r<-round(1.2*mean_infectionrate,3);
-cat("For cases not medically attended, cost interval is $",,"-",,"\n)
-cat("For outpatient visits, cost interval is $",,"-",,"\n)
-cat("For hospitalization, cost interval is $",,"-",,"\n)
-cat("For death cases, cost interval is $",,"-",,"\n)
-cat("infection rate interval is",,"-",,"\n)
+cat("For cases not medically attended, cost interval is $",min_cost_nonmed,"-",max_cost_nonmed,"\n")
+cat("For outpatient visits, cost interval is $",min_cost_outpatientvisit,"-",max_cost_outpatientvisit,"\n")
+cat("For hospitalization, cost interval is $",min_cost_hospital,"-",max_cost_hospital,"\n")
+cat("For death cases, cost interval is $",min_cost_death,"-",max_cost_death,"\n")
+cat("infection rate interval is",min_inf_r,"-",max_inf_r,"\n")
 
 #we shall use monte carlo simulation to generate these random variables and establish the benefits 
 
-sim_num <- 1000 #number of simulations
+sim_num <- 1000 #number of simulations, each simulation is a person
 popcostdata_v<-c()
 popcostdata_nov<-c()
 popvaccostdata<-c()
@@ -57,16 +57,16 @@ popnet_benefitdata<-c()
 
 repeat{
 vacc_eff<-sample(data_VE,1,replace=TRUE) #random pick from the list of vaccine efficacy
-flu_infection_rate<-runif(1,0.068,0.108) # random pick from range of infection rate
+flu_infection_rate<-runif(1,min_inf_r,max_inf_r) # random pick from range of infection rate
 sim_vaccost<-round(runif(1,round(min(data_VP),2),round(min(data_VP),2)),2)# random pick from range of vaccine price
 admin_cost<-round(runif(1,25,40),2) # administration fee for flu shot
-cost_no_med<-round(runif(1,2,100),2) # random pick from range of no medical treatment cost
-cost_appointment<-round(runif(1,100,300),2)# random pick from range of appointment cost
-cost_hospital<-round(runif(1,300,500),2)# random pick from range of hospitalization cost
-cost_death<-round(runif(1,800000,1500000),2) # price of death
-average_treatment_cost<-(0.3)*cost_no_med +(0.6)*cost_appointment+(0.1)*cost_hospital+(0.01)*cost_death
-cost_with_vax<-flu_infection_rate*average_treatment_cost*(1-vacc_eff)# average cost of traetment if vaccinated
-cost_without_vax<-flu_infection_rate*average_treatment_cost # average cost of traetment if not vaccinated
+cost_no_med<-round(runif(1,min_cost_nonmed,max_cost_nonmed),2) # random pick from range of no medical treatment cost
+cost_appointment<-round(runif(1,min_cost_outpatientvisit,max_cost_outpatientvisit),2)# random pick from range of appointment cost
+cost_hospital<-round(runif(1,min_cost_hospital,max_cost_hospital),2)# random pick from range of hospitalization cost
+cost_death<-round(runif(1,min_cost_death,max_cost_death),2) # price of death
+average_treatment_cost<-mean_percent_nonmed*cost_no_med +mean_percent_outpatientvisit*cost_appointment+mean_percent_hospital*cost_hospital+mean_percent_death*cost_death
+cost_with_vax<-flu_infection_rate*average_treatment_cost*(1-vacc_eff)# average cost of treattment for a person if vaccinated
+cost_without_vax<-flu_infection_rate*average_treatment_cost # average cost of treatment for a person if not vaccinated
 benefit<-(cost_without_vax - cost_with_vax)
 flu_shot_cost<-sim_vaccost + admin_cost
 net_benefit<-benefit-flu_shot_cost
@@ -79,13 +79,11 @@ if(length(popnet_benefitdata)==sim_num){break}
 }
 
 par(mfrow=c(2,2))
-# Plot cost distribution for both vaccine or non-vaccine
-hist(popcostdata_nov, breaks=30, col="red",
-     xlim=c(0, max(c(cost_novax, cost_vax))), xlab="Vaccine Cost",
-     main="Cost Distribution: With vs Without Vaccine")
+# Plot net benefit cost distribution for both vaccine or non-vaccine and density
 boxplot(popcostdata_nov, main = "No Vaccine", col = "lightblue", ylab = "Costs")
 boxplot(popcostdata_v, main = "With Vaccine", col = "lightgreen", ylab = "Costs")
-qqnorm(popnet_benefitdata,main="Q-Q Plot for Net Benefit Costs of Taking and Not Taking Vaccine")
-qqline(popnet_benefitdata,col="red",lwd=2)
-# Density plot 
+hist(popcostdata_nov, breaks=30, col="red",
+     xlim=c(0, max(c(cost_novax, cost_vax))), xlab="Net Benefit Cost",
+     main="Net Benefit for taking and not taking Vaccine")
+ 
 grid()
