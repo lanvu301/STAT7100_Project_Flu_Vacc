@@ -25,7 +25,13 @@ mean_prob_highrisk<-0.149
 mean_percent_outpatientvisit<-(0.149)*0.625 + (1-0.149)*0.313
 mean_perecnt_hospital<- 0.0042
 mean_percent_death<-0.00009
-mean_percent_nonmed<-
+mean_percent_nonmed<-(1-mean_percent_outpatientvisit-mean_perecnt_hospital-mean_percent_death)
+
+#Based on data, we shall assume the current costs for flu treatments is doubled
+mean_cost_nonmed<-3*2
+mean_cost_outpatientvisit<-(1-0.149)*125+(0.149)*725
+mean_cost_hospital<-(1-0.149)*19012+(0.149)*47722
+mean_cost_death<-76336+6882779
 
 #we shall use monte carlo simulation to generate these random variables and establish the benefits 
 
