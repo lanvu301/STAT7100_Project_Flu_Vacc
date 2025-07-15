@@ -80,8 +80,8 @@ if(length(popnet_benefitdata)==sim_num){break}
 
 par(mfrow=c(2,2))
 # Plot net benefit cost distribution for both vaccine or non-vaccine and density
-boxplot(popcostdata_nov, main = "Population with No Vaccine", col = "lightblue", ylab = "Costs")
-boxplot(popcostdata_v, main = "Population With Vaccine", col = "lightgreen", ylab = "Costs")
+boxplot(popcostdata_nov, main = "Decision to not take Vaccine", col = "lightblue", ylab = "Costs")
+boxplot(popcostdata_v, main = "Decision to take Vaccine", col = "lightgreen", ylab = "Costs")
 hist(popnet_benefitdata,probability=TRUE, breaks=30, col="red",
      xlim=c(min(popnet_benefitdata), max(popnet_benefitdata)), xlab="Net Benefit Cost",
      main="Net Benefit for taking and not taking Vaccine")
