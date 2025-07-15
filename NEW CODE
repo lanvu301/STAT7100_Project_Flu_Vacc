@@ -99,3 +99,5 @@ prob_positive_netbenefit<- length(positive_netbenefit)/sim_num
 prob_negative_netbenefit<- length(negative_netbenefit)/sim_num
 cat("The probability of positive net benefit is",prob_positive_netbenefit,"\nThe probability of negative net benefit is",
 prob_negative_netbenefit,"\n")
+if(prob_positive_netbenefit>prob_negative_netbenefit){print("Not Taking Vaccine is best option")}else{print(
+                                                           "Taking Vaccine is best option")}
