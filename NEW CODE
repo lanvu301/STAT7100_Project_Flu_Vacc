@@ -10,6 +10,7 @@ cat("Estimated average VE is", round(averageVE,3),"\n")
 data_VP <-c(19.483,20.878,20.49,
             20.49,32.448,21.595,19.962,25.44) # prices of vaccine for infants and young adults
 cat("Interval of price of Vaccine is $", round(min(data_VP),2),"to $",round(max(data_VP),2),"\n")
+#administration fee is 25 to 40 dollars
 ##(The mean infection rate is 0.066 while the proportion for high risk of serious complication is 0.149.
 #The mean probability of outpatient visits for flu infection is 0.313 for non-high risk while 0.625 for high risk.
 #The mean probability of hospitalization for flu infection is 0.0042.
