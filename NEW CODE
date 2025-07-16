@@ -6,7 +6,7 @@ data_VE <-(0.01)*c(56,	60,	47,	49,	52,	19,	48,	40,	38,	29,	39,	36,	30,	44,	56)
 #let us estimate the average vaccine effectiveness percentage
 averageVE<-mean(data_VE)
 cat("Estimated average VE is", round(averageVE,3),"\n")
-#estimate average cost of vaccine
+#estimate the interval of the average cost of  flu vaccine
 data_VP <-c(19.483,20.878,20.49,
             20.49,32.448,21.595,19.962,25.44) # prices of vaccine for infants and young adults
 cat("Interval of price of Vaccine is $", round(min(data_VP),2),"to $",round(max(data_VP),2),"\n")
