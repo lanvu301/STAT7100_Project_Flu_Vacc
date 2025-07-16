@@ -45,7 +45,7 @@ cat("For cases not medically attended, cost interval is $",min_cost_nonmed,"-",m
 cat("For outpatient visits, cost interval is $",min_cost_outpatientvisit,"-",max_cost_outpatientvisit,"\n")
 cat("For hospitalization, cost interval is $",min_cost_hospital,"-",max_cost_hospital,"\n")
 cat("For death cases, cost interval is $",min_cost_death,"-",max_cost_death,"\n")
-cat("infection rate interval is",min_inf_r,"-",max_inf_r,"\n")
+cat("Infection rate interval is",min_inf_r,"-",max_inf_r,"\n")
 
 #we shall use monte carlo simulation to generate these random variables and establish the benefits 
 
