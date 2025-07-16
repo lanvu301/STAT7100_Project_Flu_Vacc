@@ -85,7 +85,7 @@ boxplot(popcostdata_nov, main = "Decision to not take Vaccine", col = "lightblue
 boxplot(popcostdata_v, main = "Decision to take Vaccine", col = "lightgreen", ylab = "Flu Treatment Costs")
 hist(popnet_benefitdata,probability=TRUE, breaks=30, col="red",
      xlim=c(min(popnet_benefitdata), max(popnet_benefitdata)), xlab="Net Benefit Cost",
-     main="Density of Net Benefit for taking/not taking Vaccine")
+     main="Density of Net Benefit of Taking Vaccine")
  lines(density(popnet_benefitdata), col="blue", lwd=2)
 abline(v=0,col="black",lwd=2)
 grid()
